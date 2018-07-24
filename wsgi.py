@@ -15,7 +15,7 @@ def hello():
 	conn = mysql.connect()
 	cursor =conn.cursor()
 	cursor.execute("SELECT * from Persons")
-	data = cursor.fetchAll()
+	data = cursor.fetchall()
 	for each in data:
 		print(each)
 	return "Hello Sas!!"
