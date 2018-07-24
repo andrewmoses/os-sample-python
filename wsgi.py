@@ -14,12 +14,11 @@ mysql.init_app(app)
 def hello():
 	conn = mysql.connect()
 	cursor =conn.cursor()
-	
 	cursor.execute("SELECT * from Persons")
 	data = cursor.fetchAll()
 	for each in data:
 		print(each)
-    return "Hello Sas!!"
+	return "Hello Sas!!"
 
 if __name__ == "__main__":
     application.run()
