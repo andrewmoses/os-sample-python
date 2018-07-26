@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flaskext.mysql import MySQL
 import os
 
@@ -18,7 +18,21 @@ def hello():
 	data = cursor.fetchall()
 	for each in data:
 		print(each)
-	return "Hello Sas!!"
+	conn.close()
+	return render_template('index.html')
+# api end point to list all the records in posts
+@application.route('/allposts', methods=['GET'])
+def allposts():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("SELECT * from posts")
+	data = cursor.fetchall()
+	row_headers=[x[0] for x in cursor.description] #this will extract row headers
+	json_data=[]
+	for result in data:
+		json_data.append(dict(zip(row_headers,result)))
+	conn.close()
+	return json.dumps(json_data)
 
 if __name__ == "__main__":
     application.run()
