@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flaskext.mysql import MySQL
 import os
+import json
 
 application = Flask(__name__)
 mysql = MySQL()
@@ -12,13 +13,13 @@ mysql.init_app(application)
 
 @application.route("/")
 def hello():
-	conn = mysql.connect()
-	cursor =conn.cursor()
-	cursor.execute("SELECT * from Persons")
-	data = cursor.fetchall()
-	for each in data:
-		print(each)
-	conn.close()
+#	conn = mysql.connect()
+#	cursor =conn.cursor()
+#	cursor.execute("SELECT * from Persons")
+#	data = cursor.fetchall()
+#	for each in data:
+#		print(each)
+#	conn.close()
 	return render_template('index.html')
 # api end point to list all the records in posts
 @application.route('/allposts', methods=['GET'])
