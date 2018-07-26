@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from flaskext.mysql import MySQL
 import os
 import json
-from bson import json_util
 
 application = Flask(__name__)
 mysql = MySQL()
@@ -34,7 +33,7 @@ def allposts():
 	for result in data:
 		json_data.append(dict(zip(row_headers,result)))
 	conn.close()
-	return json.dumps(json_data, default=json_util.default)
+	return json.dumps(json_data, default=str)
 
 if __name__ == "__main__":
     application.run()
