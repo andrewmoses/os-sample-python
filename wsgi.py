@@ -12,7 +12,7 @@ application.config['MYSQL_DATABASE_HOST'] = os.environ['MYSQL_DATABASE_HOST']
 mysql.init_app(application)
 
 @application.route('/', defaults={'path': ''})
-@application.route('rj/<path:path>')
+@application.route('/rj/<path:path>')
 def hello():
 	return render_template('index.html')
 
