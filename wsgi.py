@@ -13,7 +13,8 @@ mysql.init_app(application)
 
 @application.route('/', defaults={'path': ''})
 @application.route('/rj/<path:path>')
-def hello():
+def hello(path):
+	print(path)
 	return render_template('index.html')
 
 # api end point to list all the records in posts
